@@ -1,0 +1,11 @@
+name: Landing Zone 
+
+on: push
+
+jobs:
+  terraforminit:
+    name: Terraform
+    runs-on: mera-runner
+    steps:
+    - name: workarea directory
+      run: echo check for workarea directory 

@@ -5,7 +5,7 @@ on: push
 jobs:
   terraforminit:
     name: Terraform
-    runs-on: mera-runner
+    runs-on: [self-hosted, mera-own-label]
     steps:
     - name: workarea directory
       run: echo check for workarea directory 

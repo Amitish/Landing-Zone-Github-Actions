@@ -4,8 +4,15 @@ on: push
 
 jobs:
   terraforminit:
-    name: Terraform
+    name: Terraform Init
     runs-on: [self-hosted, mera-own-label]
     steps:
-    - name: workarea directory
-      run: echo check for workarea directory 
+    - name: Checkout
+      uses: actions/checkout@v6-beta
+
+    - name: Terraform Install
+      uses: little-core-labs/install-terraform@v2.0.0
+      with:
+        version: 1.13.0
+
+      

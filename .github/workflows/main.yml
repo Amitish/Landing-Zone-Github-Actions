@@ -1,8 +1,8 @@
 name: Infra Landing Zone on push
 
-# on : workflow_dispatch                 # this will add a manual button through which workflow will run . . . 
+on : workflow_dispatch                 # this will add a manual button through which workflow will run . . . 
 
-on: push         
+# on: push         
 
 permissions:
   id-token: write
@@ -20,7 +20,7 @@ jobs:
     # - name: Terraform Install
     #   uses: little-core-labs/install-terraform@v2.0.0
     #   with:
-    #     version: 1.13.0
+    #     version: 1.13.0    
 
     - name: Azure Login
       uses: Azure/login@v2.3.0
@@ -29,3 +29,7 @@ jobs:
         tenant-id: 6d1d59ce-190e-49d4-905a-db3393ba5c8e
         subscription-id: 4ca9f234-561a-4a7f-8d97-2a62eba78bab
     
+    - name: Terraform fmt
+      run: terraform fmt -check
+      id: fmt
+      continue-on-error: true

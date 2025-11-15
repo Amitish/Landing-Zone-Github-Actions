@@ -1,15 +1,16 @@
 terraform {
+  backend "azurerm" {
+    resource_group_name  = "detoxrg"
+    storage_account_name = "detoxstg"
+    container_name       = "detoxctg"
+    key                  = "detox.tfstate"
+  }
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "4.49.0"
     }
-    # backend "azurerm" {
-    #     resource_group_name = 
-    #     storage_account_name = 
-    #     container_name = "
-    #     key = "kjf.tfstate"
-    # }
   }
 }
 

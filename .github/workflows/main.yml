@@ -1,4 +1,4 @@
-name: Infra Landing Zone +1
+name: Infra Landing Zone +2
 
 on:
   workflow_dispatch:                 # this will add a manual button through which workflow will run . . .         
@@ -32,9 +32,11 @@ jobs:
       run: terraform fmt -check
       id: fmt
       continue-on-error: true
+      working-directory: Environment/dev
 
-    - name: Terraform Init
+    - name: Terraform Init       # We need to define path where provider.tf is present
       id: init
       run: terraform init -input=false
+      working-directory: Environment/dev
 
       

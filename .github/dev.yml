@@ -1,0 +1,29 @@
+name: Infra Landing Zone 
+
+# on: push
+
+on: workflow_dispatch                 # this will add a manual button through which workflow will run
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraforminit:
+    name: Terraform Init
+    runs-on: [self-hosted, mera-own-label]           # runs-on: mera-own-label (can specify just like this also)
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6-beta
+
+    - name: Terraform Install
+      uses: little-core-labs/install-terraform@v2.0.0
+      with:
+        version: 1.13.0
+
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: 0520f214-7e8f-473d-b0b9-78a21eda52ac
+        tenant-id: 6d1d59ce-190e-49d4-905a-db3393ba5c8e
+        subscription-id: 4ca9f234-561a-4a7f-8d97-2a62eba78bab

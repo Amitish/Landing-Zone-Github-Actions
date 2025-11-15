@@ -1,8 +1,8 @@
-name: Landing Zone 
-
-# on: push
+name: Infra Landing Zone 
 
 on : workflow_dispatch                 # this will add a manual button through which workflow will run
+
+# on: push         
 
 permissions:
   id-token: write

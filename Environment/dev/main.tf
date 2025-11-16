@@ -89,11 +89,11 @@ module "application_security_group" {
   asg        = var.asg_mod
 }
 
-module "container_registry" {
-  depends_on = [module.resource_group]
-  source     = "../../modules/acr"
-  acr        = var.acr_mod
-}
+# module "container_registry" {
+#   depends_on = [module.resource_group]
+#   source     = "../../modules/acr"
+#   acr        = var.acr_mod
+# }
 
 # module "bastion_host" {
 #   depends_on = [module.resource_group, module.network, module.public_ip]

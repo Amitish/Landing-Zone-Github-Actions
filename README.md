@@ -23,10 +23,12 @@ Each major component is packaged as a reusable module:
 🛰️ Bastion Host
 📦 Azure Container Registry (ACR)
 
+
 🌍 **2. Environment-Based Deployment (dev / prod):**
 Independent variables:
 - Independent backend/state configuration
 - Easy promotion from dev → prod
+
 
 🤖 **3. GitHub Actions (Self-Hosted Runner):**
 The CI/CD pipeline automates:
@@ -37,6 +39,7 @@ The CI/CD pipeline automates:
 📦 Artifact generation
 - A self-hosted runner ensures speed, control, and flexibility.
 
+
   🔐 **4. Security Focused Architecture:**
 - RBAC & IAM roles
 - Azure Key Vault for secrets
@@ -45,6 +48,7 @@ The CI/CD pipeline automates:
 - No hard-coded credentials
 - GitHub Secrets for secure automation
 
+
   ⚙️ **5. One-Click Deployment Workflow:**
 - Push code / raise a PR
 - GitHub Actions auto-starts
@@ -52,8 +56,8 @@ The CI/CD pipeline automates:
 - Manual approval step for production
 - Azure Landing Zone gets deployed automatically
 
-🧪 **6. Enterprise-Ready Implementation:**
 
+🧪 **6. Enterprise-Ready Implementation:**
 - Multi-environment support
 - Scalable & modular
 - Cloud-native best practices

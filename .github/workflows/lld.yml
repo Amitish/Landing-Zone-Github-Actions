@@ -67,8 +67,8 @@ jobs:
       run: terraform init -input=false
       working-directory: Environment/dev
 
-    - name: Terraform Apply
-      id: plan
-      run: terraform apply --auto-approve
-      continue-on-error: true
-      working-directory: Environment/dev
+    # - name: Terraform Apply
+    #   id: plan
+    #   run: terraform apply --auto-approve
+    #   continue-on-error: true
+    #   working-directory: Environment/dev

@@ -3,13 +3,13 @@ name: Infra Landing Zone LLD
 on:
   workflow_dispatch:                 # this will add a manual button through which workflow will run . . .         
 
-permissions:
+permissions:                        # this allows github to generate OIDC token
   id-token: write
   contents: read
 
 jobs:
-  terraforminit:
-    name: Terraform Init
+  job1:
+    name: Terraform execution
     runs-on: [self-hosted, mera-own-label]         # runs-on: mera-own-label (can specify just like this also) . . .  
     steps:
     - name: Checkout
@@ -21,7 +21,7 @@ jobs:
     #   with:
     #     version: 1.13.0    
 
-    - name: Azure Login
+    - name: Azure Login                         # Github send JWT tocken to Azure
       uses: Azure/login@v2.3.0
       with:
         client-id: 0520f214-7e8f-473d-b0b9-78a21eda52ac
@@ -42,5 +42,33 @@ jobs:
     - name: Terraform Plan
       id: plan
       run: terraform plan -no-color -input=false
+      continue-on-error: true
+      working-directory: Environment/dev
+
+  
+  job2:
+    name: Manual validation
+    needs: job1
+    environment: dev
+    runs-on: [self-hosted, mera-own-label]   
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6-beta
+
+    - name: Azure Login                         
+      uses: Azure/login@v2.3.0
+      with:
+        client-id: 0520f214-7e8f-473d-b0b9-78a21eda52ac
+        tenant-id: 6d1d59ce-190e-49d4-905a-db3393ba5c8e
+        subscription-id: 4ca9f234-561a-4a7f-8d97-2a62eba78bab
+      
+    - name: Terraform Init      
+      id: init
+      run: terraform init -input=false
+      working-directory: Environment/dev
+
+    - name: Terraform Apply
+      id: plan
+      run: terraform apply --auto-approve
       continue-on-error: true
       working-directory: Environment/dev

@@ -11,7 +11,7 @@ jobs:
   job1:
     name: Terraform execution
     runs-on: [self-hosted, mera-own-label]         # runs-on: mera-own-label (can specify just like this also) . . .  
-    steps:
+    steps:                                         # brings code to the runner (in ADO we don't need to define)
     - name: Checkout
       uses: actions/checkout@v6-beta
 
